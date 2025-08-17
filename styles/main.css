@@ -1,23 +1,74 @@
+:root {
+    --neon-purple: #bc13fe;
+    --neon-blue: #0ff0fc;
+    --dark-bg: #0a0a0a;
+    --darker-bg: #050505;
+}
+
 body {
-    font-family: 'Courier New', monospace;
-    background-color: #0a0a0a;
+    background-color: var(--dark-bg);
     color: white;
+    font-family: 'Courier New', monospace;
     margin: 0;
     padding: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    text-align: center;
+    padding: 2rem;
+}
+
+.glitch {
+    position: relative;
+    color: white;
+    font-size: 4rem;
+    text-shadow: 0 0 10px var(--neon-purple);
+}
+
+.glitch::before {
+    content: attr(data-text);
+    position: absolute;
+    left: -2px;
+    text-shadow: 2px 0 #0ff0fc;
+    clip: rect(0, 900px, 0, 0);
+    animation: glitch-1 2s infinite linear alternate-reverse;
+}
+
+.nav-grid {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 3rem;
 }
 
 .cyber-button {
     display: inline-block;
-    padding: 12px 24px;
-    background: #bc13fe;
-    color: white;
+    padding: 1rem 2rem;
+    background: var(--darker-bg);
+    color: var(--neon-purple);
     text-decoration: none;
-    border: none;
-    margin: 10px;
+    border: 1px solid var(--neon-purple);
+    font-size: 1.2rem;
     transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
 }
 
 .cyber-button:hover {
-    text-shadow: 0 0 10px #bc13fe;
-    transform: translateY(-2px);
+    color: white;
+    background: var(--neon-purple);
+    box-shadow: 0 0 20px var(--neon-purple);
+    transform: translateY(-3px);
+}
+
+@keyframes glitch-1 {
+    0% { clip: rect(10px, 900px, 80px, 0); }
+    20% { clip: rect(80px, 900px, 60px, 0); }
+    40% { clip: rect(30px, 900px, 90px, 0); }
+    60% { clip: rect(70px, 900px, 100px, 0); }
+    80% { clip: rect(90px, 900px, 50px, 0); }
+    100% { clip: rect(50px, 900px, 70px, 0); }
 }
