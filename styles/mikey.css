@@ -1,14 +1,75 @@
-.neon-text {
-    color: white;
-    text-shadow: 0 0 10px var(--neon-purple), 
-                 0 0 20px var(--neon-purple);
-    margin-bottom: 2rem;
+/* Mikey page specific styles */
+:root {
+    --neon-purple: #bc13fe;
+    --neon-pink: #ff00ff;
+    --pure-white: #ffffff;
 }
 
+body {
+    background-color: #000;
+    font-family: 'Courier New', monospace;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    transition: background 0.5s ease;
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+    padding: 2rem;
+    text-align: center;
+}
+
+/* Password Section */
+#password-section {
+    transition: all 0.5s ease;
+}
+
+.neon-text {
+    color: var(--neon-purple);
+    text-shadow: 0 0 10px var(--neon-purple);
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    animation: neon-flicker 2s infinite alternate;
+}
+
+/* Content Section (Initially Hidden) */
+#content-section {
+    display: none;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.centered-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.unlocked-text {
+    color: var(--pure-white);
+    font-size: 1.5rem;
+    margin: 1rem 0;
+    text-align: center;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.spotify-embed {
+    margin-top: 2rem;
+    filter: drop-shadow(0 0 15px var(--neon-purple));
+}
+
+/* Input & Button Styles */
 #password-input {
-    padding: 12px;
+    padding: 12px 20px;
     width: 200px;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0, 0, 0, 0.5);
     border: 2px solid var(--neon-purple);
     border-radius: 5px;
     color: white;
@@ -25,7 +86,7 @@
 
 #submit-btn {
     padding: 12px 30px;
-    background: linear-gradient(45deg, var(--neon-purple), #9d00ff);
+    background: linear-gradient(45deg, var(--neon-purple), var(--neon-pink));
     color: white;
     border: none;
     border-radius: 5px;
@@ -34,11 +95,12 @@
     transition: all 0.3s;
     text-transform: uppercase;
     letter-spacing: 1px;
+    margin-top: 1rem;
 }
 
 #submit-btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(188, 19, 254, 0.4);
+    box-shadow: 0 5px 20px rgba(188, 19, 254, 0.6);
 }
 
 #message {
@@ -48,17 +110,30 @@
     font-size: 0.9rem;
 }
 
-#content-section {
+/* Animations */
+@keyframes neon-flicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        text-shadow: 
+            0 0 5px var(--neon-purple),
+            0 0 10px var(--neon-purple),
+            0 0 20px var(--neon-purple),
+            0 0 40px var(--neon-pink);
+    }
+    20%, 24%, 55% {        
+        text-shadow: none;
+    }
+}
+
+/* Unlocked State */
+body.unlocked {
+    background: linear-gradient(135deg, #111111 0%, #000000 100%);
+}
+
+body.unlocked #content-section {
+    display: block;
+    opacity: 1;
+}
+
+body.unlocked #password-section {
     display: none;
-    animation: fadeIn 1s;
-}
-
-.spotify-embed {
-    margin-top: 3rem;
-    filter: drop-shadow(0 0 10px var(--neon-purple));
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
 }
