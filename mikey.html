@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>For Mikey</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        #password-section {
+            text-align: center;
+            margin: 50px auto;
+        }
+        #secret-content {
+            display: none;
+            margin-top: 30px;
+        }
+        input {
+            padding: 10px;
+            margin: 10px 0;
+            width: 200px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .spotify-embed {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div id="password-section">
+        <h2>Enter Password</h2>
+        <input type="password" id="password-input" placeholder="Password">
+        <button onclick="checkPassword()">Submit</button>
+        <p id="error-message" style="color: red;"></p>
+    </div>
+
+    <div id="secret-content">
+        <h2>Special Message for Mikey</h2>
+        <p>This is your special content! Here's a song for you:</p>
+        
+        <div class="spotify-embed">
+            <!-- Replace this with your actual Spotify embed code -->
+            <iframe style="border-radius:12px" 
+                    src="https://open.spotify.com/embed/track/4cOdK2wGLETKBW3PvgPWqT?utm_source=generator" 
+                    width="100%" 
+                    height="352" 
+                    frameborder="0" 
+                    allowfullscreen="" 
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                    loading="lazy"></iframe>
+        </div>
+    </div>
+
+    <script>
+        function checkPassword() {
+            const password = document.getElementById('password-input').value;
+            const errorElement = document.getElementById('error-message');
+            const secretContent = document.getElementById('secret-content');
+            
+            if (password === '7e2ix') {
+                // Correct password
+                document.getElementById('password-section').style.display = 'none';
+                secretContent.style.display = 'block';
+            } else {
+                // Wrong password
+                errorElement.textContent = 'Incorrect password! Try again.';
+            }
+        }
+        
+        // Allow pressing Enter to submit
+        document.getElementById('password-input').addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') {
+                checkPassword();
+            }
+        });
+    </script>
+</body>
+</html>
