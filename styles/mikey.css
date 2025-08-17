@@ -1,0 +1,64 @@
+.neon-text {
+    color: white;
+    text-shadow: 0 0 10px var(--neon-purple), 
+                 0 0 20px var(--neon-purple);
+    margin-bottom: 2rem;
+}
+
+#password-input {
+    padding: 12px;
+    width: 200px;
+    background: rgba(0,0,0,0.5);
+    border: 2px solid var(--neon-purple);
+    border-radius: 5px;
+    color: white;
+    font-size: 1rem;
+    text-align: center;
+    margin: 1rem 0;
+    transition: all 0.3s;
+}
+
+#password-input:focus {
+    outline: none;
+    box-shadow: 0 0 15px var(--neon-purple);
+}
+
+#submit-btn {
+    padding: 12px 30px;
+    background: linear-gradient(45deg, var(--neon-purple), #9d00ff);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(188, 19, 254, 0.4);
+}
+
+#message {
+    margin-top: 1.5rem;
+    min-height: 20px;
+    color: var(--neon-purple);
+    font-size: 0.9rem;
+}
+
+#content-section {
+    display: none;
+    animation: fadeIn 1s;
+}
+
+.spotify-embed {
+    margin-top: 3rem;
+    filter: drop-shadow(0 0 10px var(--neon-purple));
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
