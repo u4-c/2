@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const message = document.getElementById('message');
     const passwordSection = document.getElementById('password-section');
     const contentSection = document.getElementById('content-section');
+    const body = document.body;
     
     const CORRECT_PASSWORD = '7e2ix';
     let attempts = 0;
@@ -16,12 +17,21 @@ document.addEventListener('DOMContentLoaded', function() {
     
     function checkPassword() {
         if (passwordInput.value === CORRECT_PASSWORD) {
-            passwordSection.style.display = 'none';
-            contentSection.style.display = 'block';
-            document.body.style.background = 'linear-gradient(135deg, #0a0a0a 0%, #1a0033 100%)';
+            body.classList.add('unlocked');
+            
+            const colors = ['#ffffff', '#bc13fe', '#00ffff', '#ff00ff'];
+            let i = 0;
+            const colorChange = setInterval(() => {
+                document.querySelectorAll('.unlocked-text').forEach(text => {
+                    text.style.color = colors[i % colors.length];
+                });
+                i++;
+                if (i > 10) clearInterval(colorChange);
+            }, 200);
+            
         } else {
             attempts++;
-            message.textContent = `Incorrect password! ${MAX_ATTEMPTS - attempts} attempts remaining. DumbAss The Password Is Your Discord Username`;
+            message.textContent = `Incorrect! ${MAX_ATTEMPTS - attempts} attempts left, DumbAss The Password Is Your Discord Username`;
             passwordInput.style.borderColor = '#ff0000';
             passwordInput.style.animation = 'shake 0.5s';
             
@@ -32,13 +42,13 @@ document.addEventListener('DOMContentLoaded', function() {
             
             if (attempts >= MAX_ATTEMPTS) {
                 submitBtn.disabled = true;
-                message.textContent = 'Maximum attempts reached. Try again later.';
+                message.textContent = 'Too many attempts! Try again later.';
                 setTimeout(() => {
                     passwordInput.value = '';
                     submitBtn.disabled = false;
                     attempts = 0;
                     message.textContent = '';
-                }, 30000); // 30 second lockout
+                }, 10000);
             }
         }
     }
